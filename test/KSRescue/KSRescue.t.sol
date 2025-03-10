@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.10;
+pragma solidity ^0.8.0;
 
 import {KSRescueSetup} from './Setup.t.sol';
 import {console} from 'forge-std/console.sol';
@@ -18,7 +18,7 @@ contract KSRescueTest is KSRescueSetup {
     deal(ksRescueAddr, approveAmount);
 
     vm.startPrank(operator);
-    vm.expectRevert('Ownable: caller is not the owner');
+    vm.expectRevert(abi.encodeWithSignature('OwnableUnauthorizedAccount(address)', operator));
     ksRescue.rescueFunds(ETH_ADDRESS, approveAmount, operator);
   }
 

@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.10;
+pragma solidity ^0.8.0;
 
 import {KSRoleSetup} from './Setup.t.sol';
 import {console} from 'forge-std/console.sol';
@@ -13,14 +13,14 @@ contract KSRoleTest is KSRoleSetup {
 
   function testRevertInvalidOwner() public {
     vm.startPrank(operator);
-    vm.expectRevert('Ownable: caller is not the owner');
+    vm.expectRevert(abi.encodeWithSignature('OwnableUnauthorizedAccount(address)', operator));
     ksRole.updateOperator(operator, true);
   }
 
   function testRevertInvalidOwnerResetLogic() public {
     vm.startPrank(guardian);
     ksRole.disableLogic();
-    vm.expectRevert('Ownable: caller is not the owner');
+    vm.expectRevert(abi.encodeWithSignature('OwnableUnauthorizedAccount(address)', guardian));
     ksRole.enableLogic();
   }
 
@@ -39,13 +39,13 @@ contract KSRoleTest is KSRoleSetup {
   function testRevertWhenPaused() public {
     vm.startPrank(guardian);
     ksRole.disableLogic();
-    vm.expectRevert('Pausable: paused');
+    vm.expectRevert(abi.encodeWithSignature('EnforcedPause()'));
     ksRole.setZohar2(address(1));
   }
 
   function testRevertWhenNotPaused() public {
     vm.startPrank(operator);
-    vm.expectRevert('Pausable: not paused');
+    vm.expectRevert(abi.encodeWithSignature('ExpectedPause()'));
     ksRole.setZohar3(address(1));
   }
 }

@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.10;
+pragma solidity ^0.8.0;
 
-import {KSRescue} from '@src/KSRescue.sol';
+import '@src/KSRescue.sol';
 
-contract MockKSRescue is KSRescue {}
+contract MockKSRescue is KSRescue {
+  constructor() Ownable(msg.sender) {}
+}

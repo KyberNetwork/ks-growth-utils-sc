@@ -8,9 +8,11 @@ import {Ownable} from '@openzeppelin/contracts/access/Ownable.sol';
 contract MockERC721 is ERC721, Ownable {
   uint256 private _currentTokenId = 0;
 
-  constructor(string memory name, string memory symbol) ERC721(name, symbol) {}
+  constructor(string memory name, string memory symbol) ERC721(name, symbol) Ownable(msg.sender) {}
 
-  function mint(address to) external onlyOwner {
+  function mint(
+    address to
+  ) external onlyOwner {
     _mint(to, _currentTokenId);
     _currentTokenId++;
   }

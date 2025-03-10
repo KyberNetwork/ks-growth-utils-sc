@@ -8,7 +8,9 @@ import {Ownable} from '@openzeppelin/contracts/access/Ownable.sol';
 contract MockERC1155 is ERC1155, Ownable {
   uint256 private _currentTokenId = 0;
 
-  constructor(string memory uri) ERC1155(uri) {}
+  constructor(
+    string memory uri
+  ) ERC1155(uri) Ownable(msg.sender) {}
 
   function mint(address to, uint256 amount) public onlyOwner {
     _mint(to, _currentTokenId, amount, '');
