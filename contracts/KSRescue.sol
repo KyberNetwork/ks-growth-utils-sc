@@ -8,15 +8,18 @@ import {SafeERC20} from '@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol
 abstract contract KSRescue is KyberSwapRole {
   using SafeERC20 for IERC20;
 
-  address private constant ETH_ADDRESS = address(0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE);
+  error InvalidRecipient();
+  error NativeTransferFailed();
+
+  address private constant ETH_ADDRESS = 0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE;
 
   function rescueFunds(address token, uint256 amount, address recipient) external onlyOwner {
-    require(recipient != address(0), 'KSRescue: invalid recipient');
+    require(recipient != address(0), InvalidRecipient());
     if (amount == 0) amount = _getAvailableAmount(token);
     if (amount > 0) {
       if (_isETH(token)) {
         (bool success,) = recipient.call{value: amount}('');
-        require(success, 'KSRescue: ETH_TRANSFER_FAILED');
+        require(success, NativeTransferFailed());
       } else {
         IERC20(token).safeTransfer(recipient, amount);
       }

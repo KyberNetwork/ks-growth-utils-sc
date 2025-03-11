@@ -6,12 +6,14 @@ import {IERC721} from '@openzeppelin/contracts/token/ERC721/IERC721.sol';
 import {IERC1155} from '@openzeppelin/contracts/token/ERC1155/IERC1155.sol';
 
 abstract contract KSRescueV2 is KSRescue {
+  error InvalidArrayLength();
+
   function rescueBatchERC721(
     address token,
     uint256[] calldata _ids,
     address recipient
   ) external onlyOwner {
-    require(recipient != address(0), 'KSRescue: invalid recipient');
+    require(recipient != address(0), InvalidRecipient());
     for (uint256 i = 0; i < _ids.length; i++) {
       IERC721(token).transferFrom(address(this), recipient, _ids[i]);
     }
@@ -24,8 +26,8 @@ abstract contract KSRescueV2 is KSRescue {
     bytes calldata data,
     address recipient
   ) external onlyOwner {
-    require(recipient != address(0), 'KSRescue: invalid recipient');
-    require(ids.length == amounts.length, 'KSRescue: invalid array length');
+    require(recipient != address(0), InvalidRecipient());
+    require(ids.length == amounts.length, InvalidArrayLength());
     for (uint256 i = 0; i < ids.length; ++i) {
       if (amounts[i] == 0) amounts[i] = IERC1155(token).balanceOf(address(this), ids[i]);
     }

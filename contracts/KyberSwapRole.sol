@@ -19,6 +19,16 @@ abstract contract KyberSwapRole is Ownable, Pausable {
   event UpdateGuardian(address user, bool grantOrRevoke);
 
   /**
+   * @dev Thrown when caller is not operator.
+   */
+  error KSRoleNotOperator(address caller);
+
+  /**
+   * @dev Thrown when caller is not guardian.
+   */
+  error KSRoleNotGuardian(address caller);
+
+  /**
    * @dev Modifier to make a function callable only when caller is operator.
    *
    * Requirements:
@@ -26,7 +36,7 @@ abstract contract KyberSwapRole is Ownable, Pausable {
    * - Caller must have operator role.
    */
   modifier onlyOperator() {
-    require(operators[msg.sender], 'KyberSwapRole: not operator');
+    require(operators[msg.sender], KSRoleNotOperator(msg.sender));
     _;
   }
 
@@ -38,7 +48,7 @@ abstract contract KyberSwapRole is Ownable, Pausable {
    * - Caller must have guardian role.
    */
   modifier onlyGuardian() {
-    require(guardians[msg.sender], 'KyberSwapRole: not guardian');
+    require(guardians[msg.sender], KSRoleNotGuardian(msg.sender));
     _;
   }
 
