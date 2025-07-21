@@ -3,7 +3,7 @@ pragma solidity 0.8.10;
 
 import {KSRoleSetup} from './Setup.t.sol';
 import {console} from 'forge-std/console.sol';
-import {IERC20} from '@openzeppelin/contracts/token/ERC20/IERC20.sol';
+import {IERC20} from 'lib/openzeppelin-contracts/contracts/token/ERC20/IERC20.sol';
 import {MockSC} from '../mocks/MockSC.sol';
 
 contract KSRoleTest is KSRoleSetup {

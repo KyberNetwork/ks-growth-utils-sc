@@ -2,7 +2,7 @@
 
 pragma solidity ^0.8.0;
 
-import '@openzeppelin/contracts/utils/Context.sol';
+import 'lib/openzeppelin-contracts/contracts/utils/Context.sol';
 
 /**
  * @dev Implementation of the {IERC20} interface.
@@ -95,7 +95,9 @@ contract MockToken is Context {
   /**
    * @dev See {IERC20-balanceOf}.
    */
-  function balanceOf(address account) public view virtual returns (uint256) {
+  function balanceOf(
+    address account
+  ) public view virtual returns (uint256) {
     return _balances[account];
   }
 
@@ -417,7 +419,9 @@ contract MockToken2 is Context {
   /**
    * @dev See {IERC20-balanceOf}.
    */
-  function balanceOf(address account) public view virtual returns (uint256) {
+  function balanceOf(
+    address account
+  ) public view virtual returns (uint256) {
     return _balances[account];
   }
 

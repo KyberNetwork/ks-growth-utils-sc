@@ -1,9 +1,11 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.10;
 
-import {KSRescueV2} from '@src/KSRescueV2.sol';
-import {IERC1155Receiver} from '@openzeppelin/contracts/token/ERC1155/IERC1155Receiver.sol';
-import {IERC721Receiver} from '@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol';
+import {KSRescueV2} from 'contracts/KSRescueV2.sol';
+import {IERC1155Receiver} from
+  'lib/openzeppelin-contracts/contracts/token/ERC1155/IERC1155Receiver.sol';
+import {IERC721Receiver} from
+  'lib/openzeppelin-contracts/contracts/token/ERC721/IERC721Receiver.sol';
 
 contract MockKSRescueV2 is KSRescueV2, IERC1155Receiver, IERC721Receiver {
   /**
@@ -52,7 +54,9 @@ contract MockKSRescueV2 is KSRescueV2, IERC1155Receiver, IERC721Receiver {
    * @param interfaceId Id of the interface.
    * @return if the interface is supported.
    */
-  function supportsInterface(bytes4 interfaceId) external view virtual override returns (bool) {
+  function supportsInterface(
+    bytes4 interfaceId
+  ) external view virtual override returns (bool) {
     return interfaceId == type(IERC1155Receiver).interfaceId
       || interfaceId == type(IERC721Receiver).interfaceId;
   }
