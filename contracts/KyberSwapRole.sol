@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import {Ownable} from 'lib/openzeppelin-contracts/contracts/access/Ownable.sol';
-import {Pausable} from 'lib/openzeppelin-contracts/contracts/security/Pausable.sol';
+import {Ownable} from '@oz/contracts/access/Ownable.sol';
+import {Pausable} from '@oz/contracts/security/Pausable.sol';
 
 abstract contract KyberSwapRole is Ownable, Pausable {
   mapping(address => bool) public operators;

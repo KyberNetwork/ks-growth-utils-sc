@@ -1,11 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.10;
 
-import {KSRescueV2} from 'contracts/KSRescueV2.sol';
-import {IERC1155Receiver} from
-  'lib/openzeppelin-contracts/contracts/token/ERC1155/IERC1155Receiver.sol';
-import {IERC721Receiver} from
-  'lib/openzeppelin-contracts/contracts/token/ERC721/IERC721Receiver.sol';
+import {KSRescueV2} from '@src/KSRescueV2.sol';
+import {IERC1155Receiver} from '@oz/contracts/token/ERC1155/IERC1155Receiver.sol';
+import {IERC721Receiver} from '@oz/contracts/token/ERC721/IERC721Receiver.sol';
 
 contract MockKSRescueV2 is KSRescueV2, IERC1155Receiver, IERC721Receiver {
   /**

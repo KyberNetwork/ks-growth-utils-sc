@@ -2,8 +2,8 @@
 
 pragma solidity ^0.8.0;
 
-import {ERC721} from 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol';
-import {Ownable} from 'lib/openzeppelin-contracts/contracts/access/Ownable.sol';
+import {ERC721} from '@oz/contracts/token/ERC721/ERC721.sol';
+import {Ownable} from '@oz/contracts/access/Ownable.sol';
 
 contract MockERC721 is ERC721, Ownable {
   uint256 private _currentTokenId = 0;
