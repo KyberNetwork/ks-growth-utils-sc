@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import {KyberSwapRole} from './KyberSwapRole.sol';
-import {IERC20} from 'lib/openzeppelin-contracts/contracts/token/ERC20/IERC20.sol';
-import {SafeERC20} from 'lib/openzeppelin-contracts/contracts/token/ERC20/utils/SafeERC20.sol';
+import {KyberSwapRole} from '@src/KyberSwapRole.sol';
+import {IERC20} from '@oz/contracts/token/ERC20/IERC20.sol';
+import {SafeERC20} from '@oz/contracts/token/ERC20/utils/SafeERC20.sol';
 
 abstract contract KSRescue is KyberSwapRole {
   using SafeERC20 for IERC20;
